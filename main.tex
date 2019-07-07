@@ -2,24 +2,23 @@
 \usepackage{graphicx}
 \usepackage{mathptmx}
 \usepackage[intlimits,centertags]{amsmath}
-\usepackage{cite}
 \usepackage{amssymb,amsfonts}
 \usepackage[pdftex]{hyperref}
 \usepackage{aas_macros}
 \usepackage{enumerate}
+\usepackage[symbol]{footmisc}
 \usepackage{xfrac}
 \usepackage[table,xcdraw]{xcolor}
 \usepackage{sectsty}
 \usepackage[normalem]{ulem}
 \usepackage{setspace}
-\usepackage[verbose]{wrapfig}
 \usepackage{ragged2e}
+\usepackage{combelow} 
 \usepackage{etoolbox} 
-\usepackage{combelow}
-\usepackage{lineno}
-\usepackage[symbol]{footmisc}
-\usepackage[T1]{fontenc}
+\usepackage{cite}
+\usepackage{fdsymbol}
 \usepackage{pdfpages}
+\usepackage[T1]{fontenc}
 \usepackage{times}
 \usepackage[compact]{titlesec}
 \usepackage{geometry}
@@ -27,6 +26,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{enumitem,amssymb}
 \usepackage{ragged2e}
+\usepackage{wrapfig}
 \newlist{thematic}{itemize}{8}
 \setlist[thematic]{label=$\square$}
 \usepackage{pifont}
@@ -36,7 +36,33 @@
 \hspace{-2.5pt}}
 \newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
-\usepackage{xcolor}
+
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\definecolor{vermillion}{rgb}{0.89, 0.259, 0.204}
+
+
+\newif\ifastrophysical
+\astrophysicaltrue
+\newcommand{\onlyastrophysical}[1] 
+{
+  \ifastrophysical
+  #1 
+  \fi
+}
+
+\newif\iffundamental
+\fundamentalfalse
+\newcommand{\onlyfundamental}[1] 
+{
+  \iffundamental
+  #1 
+  \fi
+}
+
+
+\definecolor{header_color}{HTML}{741a07}
+\subsectionfont{\color{header_color}}
+\renewcommand\refname{\color{header_color}References}
 
 
 \begin{document}
@@ -68,6 +94,10 @@ Phone:  805-756-7375
 
 \textbf{Abstract  (optional):}
 
+\normalsize
+\pagebreak
+
+\pagenumbering{arabic}
 
 \pagebreak
 
@@ -157,10 +187,20 @@ A first order estimate of the acceptance of a high-elevation radio receiver, sho
 %The probability that a tau lepton will exit, $P_{exit}$ was calculated assuming Standard model interaction cross sections and energy losses by Alvarez-Mu\~niz, et al~\cite{Alvarez-Muniz2018} to be uniform at 100 PeV up to emergence angles of 10$^{\circ}$ and more concentrated towards Earth-skimming angles at higher energies.
 A tau lepton emerges as the result of a charged current interaction of the original tau neutrino, the probability, $P_{exit}$ of which was calculated by  Alvarez-Mu\~niz, et al~\cite{Alvarez-Muniz2018}.The tau will decay within a a decay length $L_{decay} = 49$~km($E_{\tau}$/EeV), such that tau leptons emerging at the horizon with energies below 3 EeV with always decay before reaching the mountain ridge. We assume that all events initiated within a few degrees (1-3$^{\circ}$) view angle of the neutrino direction are detected by the detector, based on the radio beam pattern of an air shower. Because the geometric aperture grows as $h^{1.5}$, the total acceptance increases by a factor of 7 going from 1~km to 2~km and by an additional factor of 2.5 going from 2~km to 4~km. 
 
-%\begin{table}[htbp] % \centering % \begin{tabular}{@{} cccccc @{}}
-  %\toprule %   Elevation (km) & Aperture (km$^2$ sr) & $P_{exit}(10^{17}$ eV) & $P_{exit}(10^{18}$ eV) & $A\Omega(10^{17}$~eV) & $A\Omega(10^{18}$~eV)\\     %\midrule
+%\begin{table}[htbp]
+ % \centering
+ % \begin{tabular}{@{} cccccc @{}}
+  %\toprule
+ %   Elevation (km) & Aperture (km$^2$ sr) & $P_{exit}(10^{17}$ eV) & $P_{exit}(10^{18}$ eV) & $A\Omega(10^{17}$~eV) & $A\Omega(10^{18}$~eV)\\ 
+    %\midrule
   %  1 & 0.1 & 8e-4 & 8e-3 & 8e-5 & 8e-2 \\
-  %  2 & 0.7 & 8e-4 & 8e-3 & 5.6e-4 & 5.6e-3 \\   %  3 & 1 & 8e-4 &  8e-3 & 1e-4 & 8e-3  \\     %\bottomrule % \end{tabular}  %\caption{Rough order of magnitude estimates for the acceptance of a high elevation detector based on the geometric acceptance formula of Motloch, Hollon, Priviter 2014. We assume a factor of $1/3$ to account for an expected 120$^\circ$ field of view. For each energy, we have multiplied the geometric acceptance estimate by the peak $P_\mathrm{exit}$ values of Alvarez-Mu\~niz et al. 2018.}  %\label{fig:crude_estimate}%\end{table}
+  %  2 & 0.7 & 8e-4 & 8e-3 & 5.6e-4 & 5.6e-3 \\ 
+  %  3 & 1 & 8e-4 &  8e-3 & 1e-4 & 8e-3  \\ 
+    %\bottomrule
+ % \end{tabular}
+  %\caption{Rough order of magnitude estimates for the acceptance of a high elevation detector based on the geometric acceptance formula of Motloch, Hollon, Priviter 2014. We assume a factor of $1/3$ to account for an expected 120$^\circ$ field of view. For each energy, we have multiplied the geometric acceptance estimate by the peak $P_\mathrm{exit}$ values of Alvarez-Mu\~niz et al. 2018.}
+  %\label{fig:crude_estimate}
+%\end{table}
 
 The radio beam expected from tau lepton air showers drives the design of the high-elevation antennas in terms of their frequency band and gain. The radio signal is broadband from $\sim$10~MHz to 1~GHz, meaning that various choice can be made about the optimal antenna and frequency band chosen. For instance, as shown in Fig.~\ref{fig:crude_estimate}(right), a 30-80~MHz beam is broad, covering a wide range of view angles. Alternatively, the beam in the 200-1200~MHz frequency band can be more strongly peaked at Cherenkov angle, as shown in Fig.~\ref{fig:crude_estimate}(right). 
 
@@ -178,10 +218,10 @@ Short dipole antennas are readily available in the 30-80~MHz band, typically wit
 
 The optimal design of a high elevation radio interferometer depends on several factors shown on the right in Fig.~\ref{fig:acceptance} including the detector elevation (top), the effective gain of the phased array (middle), and the average trigger threshold on the beam (bottom). The acceptance ratios are referenced to a design of a single BEACON station composed of 7 phased antennas each with a gain of 1.8 dBi and a frequency band of 30-80 MHz placed at an elevation of 3 km with a 5$\sigma$ threshold on the beam.
 
-1.	The VHF design has a higher acceptance for E>1017.5 eV, while the UHF design yields a lower threshold.
-2.	The station acceptance linearly increases with the number of antennas up to 10 antennas, but sub-linearly above that (see Fig. 3). When increasing the number of stations, however, the acceptance increases linearly regardless of antenna number, assuming the visible volume of each station is independent.
-3.	The number of expected neutrinos from standard cosmogenic models increases linearly with the elevation of the station up to 3 km, while power laws (such as the IceCube flux) or models with cutoffs E<1018 eV are largely insensitive to elevation changes above 1 km. 
-4.	The number of expected neutrinos is insensitive to whether it overlooks rock or ocean, provided it has view out to the horizon. Ocean may still be preferable; however, because manmade noise is more prevalent in the valleys near high-elevation land-locked mountains than over the deep ocean.
+%1.	The VHF design has a higher acceptance for E>1017.5 eV, while the UHF design yields a lower threshold.
+%2.	The station acceptance linearly increases with the number of antennas up to 10 antennas, but sub-linearly above that (see Fig. 3). When increasing the number of stations, however, the acceptance increases linearly regardless of antenna number, assuming the visible volume of each station is independent.
+%3.	The number of expected neutrinos from standard cosmogenic models increases linearly with the elevation of the station up to 3 km, while power laws (such as the IceCube flux) or models with cutoffs E<1018 eV are largely insensitive to elevation changes above 1 km. 
+%4.	The number of expected neutrinos is insensitive to whether it overlooks rock or ocean, provided it has view out to the horizon. Ocean may still be preferable; however, because manmade noise is more prevalent in the valleys near high-elevation land-locked mountains than over the deep ocean.
 Informed by these results, the reference design for the BEACON prototype is a single station with 10 phased antennas at 3 km altitude. Using ten phased antennas in a single station has the benefit of being able to form multiple beams that can help with not only direction reconstruction, but also with reducing backgrounds from anthropogenic sources. Upon demonstration of its feasibility as a neutrino detector, the BEACON detector could be expanded to include 10 stations sited either along the same mountain ridge or at multiple sites around the world, thereby scaling up to constrain the UHE neutrino flux and achieve full sky coverage using a technique complementary to IceCube and IceCube-Gen2. Multiple stations along the same ridge could act as a veto for man-made radio transients such as air planes. 
 
 
